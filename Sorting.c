@@ -3,9 +3,15 @@
 #define lenLine 255 /* lenght line */
 #define textLines 5000 /* total lines */
 
-/* --------------- will clear int vectors --------------- */
-void clearVect(int v[],int size){
-	for(int i=0 ;i<size ;i++) v[i] = 0;
+/* --------------- will clear jumps vector --------------- */
+void clearJumps(int jumps[],int size){
+	for(int i=0 ;i<size ;i++) jumps[i] = 0;
+}
+
+/* --------------- will clear text file matrix --------------- */
+void clearTextFile(char TextFile[][lenLine]){
+	for(int i=0 ;i<textLines; i++)
+		for(int j=0 ;j<lenLine; j++) TextFile[i][j] = ' ';
 }
 
 /* ---------------  will open text file --------------- */
@@ -115,12 +121,13 @@ void diskWriting(FILE *disk,char M[][lenLine],int jumps[],int loadedLines){
 
 int main(){
 	char textFile[textLines][lenLine];
-	FILE *text=openFile(text), *disk=fopen("Text.txt","w");
+	FILE *text=openFile(text), *disk=fopen("output.txt","w");
 	int loadedLines=0, jumps[textLines];
-	clearVect(jumps,textLines);
+	clearTextFile(textFile);
+	clearJumps(jumps,textLines);
 	loadText(text,textFile,loadedLines);
 	quickSort(textFile,0,loadedLines-1);
-//	findRepeatedWords(textFile,jumps,loadedLines);
+	findRepeatedWords(textFile,jumps,loadedLines);
 	diskWriting(disk,textFile,jumps,loadedLines);
 	fclose(text);
 	fclose(disk);
