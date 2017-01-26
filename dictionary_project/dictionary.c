@@ -57,16 +57,16 @@ void getPivot(char M[][lenLine],char pivot[],int left,int right){ /* will get pi
 	for(int j=0; j<lenLine; j++) pivot[j] = M[indexPivot][j];
 }
 bool lesserPivot(char M[][lenLine],char pivot[],int left){ /* check if a word is lesser than pivot */
-	for(int j=0; j<lenLine; j++)
-		if(M[left][j] == '\n' && pivot[j] == '\n') return false;
-		else if(M[left][j] < pivot[j]) return true;
-		else if(M[left][j] > pivot[j]) return false;
+	for(int j=0; j<lenLine; j++){
+		if(M[left][j] < pivot[j]) return true;
+		if(M[left][j] > pivot[j] || M[left][j] == '\n' && pivot[j] == '\n') return false;
+	}
 }
 bool greaterPivot(char M[][lenLine],char pivot[],int right){ /* check if a word is greater than pivot */
-	for(int j=0; j<lenLine; j++)
-		if(M[right][j] == '\n' && pivot[j] == '\n') return false;
-		else if(M[right][j] > pivot[j]) return true;
-		else if(M[right][j] < pivot[j]) return false;
+	for(int j=0; j<lenLine; j++){
+		if(M[right][j] > pivot[j]) return true;
+		if(M[right][j] < pivot[j] || M[right][j] == '\n' && pivot[j] == '\n') return false;
+	}
 }
 void quickSort(char M[][lenLine],int left,int right){ /* quick sort method */
 	if(left >= right) return;
