@@ -86,20 +86,20 @@ void quickSort(char M[][lenLine],int left,int right){ /* quick sort method */
 }
 
 /* --------------- will detect repeated words --------------- */
-void getWord(char M[][lenLine],char word[],int position){
+void readWord(char M[][lenLine],char word[],int position){ /* will read a word from textFile matrix */
 	for(int j=0 ;j<lenLine; j++) word[j] = M[position][j];
 }
-bool repeatedWords(char word1[],char word2[]){
+bool isRepeatedWord(char word1[],char word2[]){ /* will check if word1 is equal to word2 */
 	for(int j=0 ;j<lenLine; j++) if(word1[j] != word2[j]) return false;
 	return true;
 }
-void findRepeatedWords(char M[][lenLine],int jumps[],int loadedLines){
+void seekRepeatedWords(char M[][lenLine],int jumps[],int loadedLines){ /* will seek repeated words */
 	char word1[lenLine], word2[lenLine];
 	for(int i=0; i<loadedLines; i++){
-		getWord(M,word1,i);
+		readWord(M,word1,i);
 		for(int z=i+1; z<loadedLines;){
-			getWord(M,word2,z);
-			if(repeatedWords(word1,word2)){
+			readWord(M,word2,z);
+			if(isRepeatedWord(word1,word2)){
 				jumps[i] += 1;
 				z++;
 			}else break;
@@ -127,7 +127,7 @@ int main(){
 	clearJumps(jumps,textLines);
 	loadText(text,textFile,loadedLines);
 	quickSort(textFile,0,loadedLines-1);
-	findRepeatedWords(textFile,jumps,loadedLines);
+	seekRepeatedWords(textFile,jumps,loadedLines);
 	diskWriting(disk,textFile,jumps,loadedLines);
 	fclose(text);
 	fclose(disk);
