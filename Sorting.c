@@ -86,7 +86,7 @@ void quickSort(char M[][lenLine],int left,int right){ /* quick sort method */
 }
 
 /* --------------- will detect repeated words --------------- */
-void getWord(char M[][lenLine],char word[],char position){
+void getWord(char M[][lenLine],char word[],int position){
 	for(int j=0 ;j<lenLine; j++) word[j] = M[position][j];
 }
 bool repeatedWords(char word1[],char word2[]){
