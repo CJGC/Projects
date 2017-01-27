@@ -1,12 +1,10 @@
 class Complements:
 
-    def matrixTransposed(self,matrix):
-        rowsAmount = len(matrix)
-        columnsAmount = len(matrix[0])
-        assert rowsAmount == columnsAmount, "Error, must be a squared matrix"
-        times = []
-        [times.append(i) for i in range(0,rowsAmount)]
-        return [[row[i] for row in matrix] for i in times]
+    def transSquaredMatrix(self,matrix):
+        rowCount = len(matrix)
+        for item in matrix:
+            if not len(item) == rowCount: raise AssertionError("Must be squared matrix")
+        return [[row[i] for row in matrix] for i in range(0,rowCount)]
 
 class Fifo:
     def __init__(self):
