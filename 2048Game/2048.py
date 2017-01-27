@@ -32,10 +32,10 @@ class _2048:
                 if self.topNumber in item: return True
 
     def saveEmptyCells(self):
-        rowsAmount = len(self.board)
-        columnsAmount = len(self.board[0])
-        for _list,x in zip(self.board,range(0,rowsAmount)):
-            for item,y in zip(_list,range(0,columnsAmount)):
+        rowCount = len(self.board)
+        colCount = len(self.board[0])
+        for _list,x in zip(self.board,range(0,rowCount)):
+            for item,y in zip(_list,range(0,colCount)):
                 if not item: self.emptyCells.append([x,y])
 
     def deleteEmptyCells(self):
@@ -85,13 +85,13 @@ class _2048:
                 self.mixNumbers(item)
                 self.move(item)
         elif self.key == 's': # move downward
-            self.board = compl.matrixTransposed(self.board)
+            self.board = compl.transSquaredMatrix(self.board)
             for item in self.board:
                 item.reverse()
                 self.mixNumbers(item)
                 self.move(item)
                 item.reverse()
-            self.board = compl.matrixTransposed(self.board)
+            self.board = compl.transSquaredMatrix(self.board)
         elif self.key == 'd': # move rightward
             for item in self.board:
                 item.reverse()
@@ -99,11 +99,11 @@ class _2048:
                 self.move(item)
                 item.reverse()
         elif self.key == 'w': # move upward
-            self.board = compl.matrixTransposed(self.board)
+            self.board = compl.transSquaredMatrix(self.board)
             for item in self.board:
                 self.mixNumbers(item)
                 self.move(item)
-            self.board = compl.matrixTransposed(self.board)
+            self.board = compl.transSquaredMatrix(self.board)
         if self.validMove:
             self.deleteEmptyCells()
             self.saveEmptyCells()
