@@ -146,12 +146,6 @@ void diskWriting(FILE *disk,char M[][lenLine],int loadedLines) {
   }
 }
 
-void printLine(char M[][lenLine],int i) {
-  for(int j=0; j<lenLine; j++) 
-    printf("%c",M[i][j]);
-  printf("\n");
-}
-
 int main(int argc, char **argv) {
   if(argc != 2) {
     printf("Enter a valid filename <<%s filename.txt>>\n",argv[0]);
@@ -169,9 +163,7 @@ int main(int argc, char **argv) {
 
   int loadedLines=0;
   loadText(text,textFile,loadedLines);
-  printf("%d\n",loadedLines);
   quickSort(textFile,0,loadedLines-1);
-  //clearMatrix(textFile,loadedLines);
   diskWriting(disk,textFile,loadedLines);
   fclose(text);
   fclose(disk);
