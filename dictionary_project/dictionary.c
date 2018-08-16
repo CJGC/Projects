@@ -41,6 +41,8 @@ void loadText(FILE *text,char M[][lenLine],int &loadedLines) {
     }
  
   }
+
+  loadedLines --; //extra line
 }
 
 /* --------------- it will sort text with quicksort method --------------- */
