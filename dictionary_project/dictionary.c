@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 /* lenght line */
 #define lenLine 255
@@ -153,14 +154,18 @@ int main(int argc, char **argv) {
   }
   
   char textFile[textLines][lenLine];
-  FILE *text=fopen(argv[1],"r"), *disk=fopen("output.txt","w");
-  
+  FILE *text=fopen(argv[1],"r"); 
+  char *output; 
+  output = strtok(argv[1],".txt");
+  strcat(output,"_output.txt");
+  FILE *disk=fopen(output,"w");
+    
   if(!text) {
     printf("Was not possible open the file\n");
     fclose(disk);
     return -1;
   }
-
+  
   int loadedLines=0;
   loadText(text,textFile,loadedLines);
   quickSort(textFile,0,loadedLines-1);
