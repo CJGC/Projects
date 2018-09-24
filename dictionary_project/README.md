@@ -1,1 +1,1 @@
-Dictionary project will sort a set of words or phrases, taken from plane text file.
+Dictionary project will sort as well as delete repeated word, taken from a set of words or phrases.
