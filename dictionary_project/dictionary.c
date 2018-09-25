@@ -154,11 +154,10 @@ int main(int argc, char **argv) {
   }
   
   char textFile[textLines][lenLine];
+  FILE *text=fopen(argv[1],"r"); 
   char *output; 
   output = strtok(argv[1],".txt");
   strcat(output,"_output.txt");
-
-  FILE *text=fopen(argv[1],"r"); 
   FILE *disk=fopen(output,"w");
     
   if(!text) {
